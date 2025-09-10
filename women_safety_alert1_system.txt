@@ -1,0 +1,95 @@
+int s1=5;
+int s2=6;
+int s3=7;
+
+int l1=2;
+int l2=3;
+int l3=4;
+int ldr=A1;
+int buz=A0;
+int s1s=0,s2s=0,s3s=0,cnt=0;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(s1,INPUT_PULLUP);
+pinMode(s2,INPUT_PULLUP);
+pinMode(s3,INPUT_PULLUP);
+pinMode(l1,OUTPUT);
+pinMode(l2,OUTPUT);
+pinMode(l3,OUTPUT);
+pinMode(buz,OUTPUT);
+pinMode(ldr,INPUT);
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+
+if(digitalRead(ldr)==1)
+{
+  digitalWrite(l1,1);
+  digitalWrite(l2,1);
+  digitalWrite(l3,1);
+}
+
+else
+{
+    digitalWrite(l1,0);
+  digitalWrite(l2,0);
+  digitalWrite(l3,0);
+}
+
+if(digitalRead(s1)==0)
+{
+  s1s=1;
+}
+
+if(digitalRead(s2)==0)
+{
+  s2s=1;
+}
+
+if(digitalRead(s3)==0)
+{
+  s3s=1;
+}
+
+if(s1s==1)
+{
+  digitalWrite(buz,1);
+  digitalWrite(l1,1);
+  delay(200);
+    digitalWrite(l1,0);
+    digitalWrite(buz,0);
+    delay(200);
+
+  
+}
+
+if(s2s==1)
+{
+  digitalWrite(buz,1);
+  digitalWrite(l2,1);
+  delay(200);
+    digitalWrite(l2,0);
+    digitalWrite(buz,0);
+    delay(200);
+
+  
+}
+
+if(s3s==1)
+{
+  digitalWrite(buz,1);
+  digitalWrite(l3,1);
+  delay(200);
+    digitalWrite(l3,0);
+    digitalWrite(buz,0);
+    delay(200);
+}
+delay(300);
+cnt=cnt+1;
+if(cnt>20)
+{
+  cnt=0;
+  Serial.print("233735,5Q4POE1K4I24X6DE,0,0,SRC 24G,src@internet,"+String(s1s)+","+String(s2s)+","+String(s3s)+",0\n");
+}
+}
